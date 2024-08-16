@@ -10,11 +10,12 @@ body{
     height: 100vh;
     background: rgb(34,193,195);
     background: linear-gradient(-45deg, var(--bgcolorA) 0%, var(--bgcolorB) 100%);
+    overflow: hidden;
 }
 
 .header{
     width: 100%;
-    height: auto;
+    height: 10%;
     font-size: 4vw;
     letter-spacing: 1vw;
     word-spacing: 2vw;
@@ -22,17 +23,19 @@ body{
 
 .main{
     width: 100%;
-    height: auto;    
-    border: 1px solid black;  
+    height: 90%;    
+    /* border: 1px solid black;   */
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 6em;
+    /* gap: 6em; */
     flex-wrap: wrap;
+    overflow-y: scroll;
 }
 
 .main a{
-    width: 20%;
-    height: 20em;
+    margin: 4em;
+    width: 15em;
+    height: 15em;
     border: 1px solid black;
 }
