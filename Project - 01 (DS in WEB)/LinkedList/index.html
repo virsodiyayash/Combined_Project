@@ -15,40 +15,12 @@
     <div class="functionBar">
         <!-- display code of node  -->
         <div class="box">
-            <button class="innerbox" id="nodeStructure">Node Structure</button>
-
-            <!-- Node of linkedlist -->
-            <div id="codeOfNode">
-                <div class="language">
-                    <div class="l1">Java : </div>
-                </div>
-                <pre>
-
-
-    class Node{
-        int value;
-        Node link;
-
-        Node()
-        {
-            link = null;
-        }
-
-        Node(int value, Node link)      
-        {     
-            this.value = value;
-            this.link = link;
-        }
-    }
-                </pre>
-            </div>
+            <button class="innerbox" id="showCode">Code</button>
         </div>
 
         <!-- select the function for linkedList  -->
         <div class="box">
             <div class="innerbox">
-                <!-- Function Code -->
-                <button id="functionCode">i</button>
 
                 <!-- The Code of a function will be writen below -->
                 <div id="codeOfFunction">
@@ -94,6 +66,44 @@
         </div>
     </div>
 
+
+    <!-- Complete Code of LinkedList  -->
+    <div id="background">
+        <div id="code">
+            <button id="close">X</button>
+            <pre>
+
+
+        class Node{
+            int value;
+            Node link;
+            
+            Node(){
+                link = null;
+            }
+            
+            Node(int value, Node link){              
+                this.value = value;
+                this.link = link;
+            }
+        }
+
+
+        class linkedList{
+
+            Node first;
+
+            linkedList(){
+                this.first = null;
+            }
+
+
+        }
+
+            </pre>
+        </div>
+    </div>
+        
 
 <!--    The div below is the Node of linkedList     -->
 <!--  <div class="node"> <div class="num"> <div>1</div> </div> <div></div> </div>     -->

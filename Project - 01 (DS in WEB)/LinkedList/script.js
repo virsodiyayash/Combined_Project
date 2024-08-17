@@ -83,6 +83,10 @@ function insertAt(){
 }
 
 function deleteByIndex(){
+    if(linkedlist.length == 0){
+        changeStatus("Linked List is empty", 'red');
+        return;
+    }
     let index = document.getElementById('index');
     if(index.value == ''){
         changeStatus("Enter Parameter", 'red');
@@ -99,6 +103,10 @@ function deleteByIndex(){
 }
 
 function deleteByData(){
+    if(linkedlist.length == 0){
+        changeStatus("Linked List is empty", 'red');
+        return;
+    }
     let data = document.getElementById('data');
     if(data.value == ''){
         changeStatus("Enter Parameter", 'red');
@@ -113,7 +121,6 @@ function deleteByData(){
     changeStatus('Node is Successfully Added', 'green');
 }
 
-
 function print(){
     let text = "";
     for(let i = 0 ; i < linkedlist.length ; i++){
@@ -122,25 +129,10 @@ function print(){
     return text;
 }
 
-function nodeStructure(){
-    let element = document.getElementById('code');
-    if(element.style.visibility == 'hidden') element.style.visibility = 'visible'; 
-    else element.style.visibility = 'hidden'; 
-}
-
-document.getElementById('functionCode').addEventListener('mouseenter', ()=>{
-    document.querySelector('#codeOfFunction pre').innerHTML = codeOfFunction[functionCode];
-    document.getElementById('codeOfFunction').style.visibility = 'visible';
+document.getElementById('showCode').addEventListener('click', (e)=>{
+    document.getElementById('background').style.visibility = 'visible';
 });
 
-document.getElementById('functionCode').addEventListener('mouseout', ()=>{
-    document.getElementById('codeOfFunction').style.visibility = 'hidden';
-});
-
-document.getElementById('nodeStructure').addEventListener('mouseenter', ()=>{
-    document.getElementById('codeOfNode').style.visibility = 'visible';
-});
-
-document.getElementById('nodeStructure').addEventListener('mouseout', ()=>{
-    document.getElementById('codeOfNode').style.visibility = 'hidden';
+document.getElementById('background').addEventListener('click', ()=>{
+    document.getElementById('background').style.visibility = 'hidden';
 });
