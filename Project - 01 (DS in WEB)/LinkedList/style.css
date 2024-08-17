@@ -169,6 +169,7 @@ input{
     height: 70%;
     background-color: whitesmoke;
     /* padding: 2em; */
+    font-size: 1.3em;
     border: 1px solid;
     overflow-y: scroll;
 }
