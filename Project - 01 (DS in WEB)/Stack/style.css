@@ -1,0 +1,113 @@
+body {
+    height: 100vh;
+    margin: 0;
+    background: rgb(34,193,195);
+    background: linear-gradient(-45deg, var(--bgcolorA) 0%, var(--bgcolorB) 100%);
+    overflow: hidden;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.number_push{
+    font-size: 1.3em;
+}
+
+.input_text{
+    margin-top: 4em;
+    display: flex;
+    /* visibility: hidden; */
+}
+
+#input_text{
+    display: none;
+}
+
+.input_number{
+    font-size: 1.3em;
+}
+
+.buttons{
+    margin-top: 2em;
+}
+
+.button{
+    margin-right: 1.5em;
+    margin-left: 1.5em;
+    font-size: 2em;
+}
+
+.container{
+    height: 85vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+
+.side {
+    position: absolute;
+    border: 2px solid #000;
+}
+
+.left {
+    height: 400px;
+    top: 0;
+    left: 0;
+    border-left: 0;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.right {
+    height: 400px;
+    top: 0;
+    right: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.bottom {
+    width: 400px;
+    bottom: 0;
+    left: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.number {
+    width: 400px;
+    height: 40px;
+    margin: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 2px solid #000;
+    font-size: 1.5em;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
