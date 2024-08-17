@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DS in Web</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../colors.css">
+</head>
+<body>
+    <div class="header">
+        Linked List
+    </div>
+
+    <!-- selection of function -->
+    <div class="functionBar">
+        <!-- display code of node  -->
+        <div class="box">
+            <button class="innerbox" id="nodeStructure">Node Structure</button>
+
+            <!-- Node of linkedlist -->
+            <div id="codeOfNode">
+                <div class="language">
+                    <div class="l1">Java : </div>
+                </div>
+                <pre>
+
+
+    class Node{
+        int value;
+        Node link;
+
+        Node()
+        {
+            link = null;
+        }
+
+        Node(int value, Node link)      
+        {     
+            this.value = value;
+            this.link = link;
+        }
+    }
+                </pre>
+            </div>
+        </div>
+
+        <!-- select the function for linkedList  -->
+        <div class="box">
+            <div class="innerbox">
+                <!-- Function Code -->
+                <button id="functionCode">i</button>
+
+                <!-- The Code of a function will be writen below -->
+                <div id="codeOfFunction">
+                    <pre></pre>
+                </div>
+
+                <div class="text">Function : </div>
+
+                <!-- To select Function -->
+                <select name="function" id="function">
+                    <option value="0">-- Select --</option>
+                    <option value="1">insertAtEnd</option>
+                    <option value="2">insertAtFirst</option>
+                    <option value="3">insertAt</option>
+                    <option value="4">deleteByIndex</option>
+                    <option value="5">deleteByValue</option>
+                </select>
+            </div>
+        </div>
+
+
+        <!-- parameter of the selected function  -->
+        <div class="box" id="parameter">
+            <div class="innerbox"><div style="font-size: 150%;">Parameters</div></div>
+        </div>
+    </div>
+
+    <div class="statusbar">
+
+        <div class="button">
+            <button onclick="enter()" class="execution"> Enter </button>
+        </div>
+        <!-- to give Message for error or something else -->
+        <div class="status" id="status">
+            Status
+        </div>
+    </div>
+
+    <!-- display linkedList  -->
+    <div class="main">
+        <div id="linkedlist">
+            <!-- Nodes of linkedList -->
+        </div>
+    </div>
+
+
+<!--    The div below is the Node of linkedList     -->
+<!--  <div class="node"> <div class="num"> <div>1</div> </div> <div></div> </div>     -->
+
+    <script src="function.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
