@@ -103,41 +103,6 @@ input{
     justify-content: center;
     align-items: center;
 }
-/* 
-#linkedlist{
-    width: 100%;    
-    height: 40%;
-    border-top: 1px solid;
-    border-bottom: 1px solid;
-    overflow-x: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap; 
-    gap: 2em; 
-} */
-/* 
-.node{
-    width: 10em;
-    height: 7.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid;
-    border-radius: 2em;  
-}
-
-.node div{
-    width: 5em;
-    height: 7.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.node div:first-child{
-    border-right: 1px solid;
-} */
 
 #close{
     width: 1.5em;
