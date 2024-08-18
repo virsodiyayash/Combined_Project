@@ -1,27 +1,65 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>DS in Web</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../colors.css">
 </head>
 <body>
-    <div class="main">
-    <div class="buttons">
-        <div class="buttons_for_action">
-            <button class="button push">push</button>
-            <button class="button pop">pop</button>
-            <button class="button peek">peek</button>
-            <button class="button size">size</button>
+    <div class="header">
+        Stack
+    </div>
+
+    <!-- selection of function -->
+    <div class="functionBar">
+        <!-- display code of node  -->
+        <div class="box">
+            <button class="innerbox" id="showCode">Code</button>
+        </div>
+
+        <!-- select the function for linkedList  -->
+        <div class="box">
+            <div class="innerbox">
+
+                <!-- The Code of a function will be writen below -->
+                <div id="codeOfFunction">
+                    <pre></pre>
+                </div>
+
+                <div class="text">Function : </div>
+
+                <!-- To select Function -->
+                <select name="function" id="function">
+                    <option value="0">-- Select --</option>
+                    <option value="1">push</option>
+                    <option value="2">pop</option>
+                    <option value="3">peek</option>
+                    <option value="4">change</option>
+                    <option value="5">size</option>
+                </select>
+            </div>
+        </div>
+
+
+        <!-- parameter of the selected function  -->
+        <div class="box" id="parameter">
+            <div class="innerbox"><div style="font-size: 150%;">Parameters</div></div>
         </div>
     </div>
 
-    <div class="input_text" id="input_text">
-        <input type="text" class="input_number" placeholder="Enter number">
-        <button class="number_push">push</button>
+    <div class="statusbar">
+
+        <div class="button">
+            <button onclick="enter()" class="execution"> Enter </button>
+        </div>
+        <!-- to give Message for error or something else -->
+        <div class="status" id="status">
+            Status
+        </div>
     </div>
 
+    <!-- display Stack  -->
     <div class="container">
         <div class="box">
             <div class="side left"></div>
@@ -29,8 +67,50 @@
             <div class="side bottom"></div>
         </div>
     </div>
-</div>
 
-    <script src="app.js"></script>
+
+    <!-- Complete Code of Stack  -->
+    <div id="background">
+        <div id="code">
+            <button id="close">X</button>
+            <pre>
+
+
+        class Node{
+            int value;
+            Node link;
+            
+            Node(){
+                link = null;
+            }
+            
+            Node(int value, Node link){              
+                this.value = value;
+                this.link = link;
+            }
+        }
+
+
+        class linkedList{
+
+            Node first;
+
+            linkedList(){
+                this.first = null;
+            }
+
+
+        }
+
+            </pre>
+        </div>
+    </div>
+        
+
+<!--    The div below is the Node of linkedList     -->
+<!--  <div class="node"> <div class="num"> <div>1</div> </div> <div></div> </div>     -->
+
+    <script src="function.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
