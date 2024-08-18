@@ -78,14 +78,16 @@
             Node link;
             
             Node(){
-                link = null;
+                this.link = null;
             }
             
-            Node(int value, Node link){              
+            Node(int value){              
                 this.value = value;
-                this.link = link;
+                this.link = null;
             }
         }
+
+
 
 
         class linkedList{
@@ -96,6 +98,57 @@
                 this.first = null;
             }
 
+
+            void insertAtFirst(int info){
+                Node newNode = new Node(info);
+                System.out.println("Added..");      
+                if(first == null){
+                    first = newNode;
+                    return;
+                }
+                newNode.link = first;
+                first = newNode;
+            }
+
+
+            void insertAtEnd(int info){
+                Node newNode = new Node(info);
+                System.out.println("Added..");
+                if(first == null){
+                    first = newNode;
+                    return;
+                }
+                Node toEnd = first;
+                while(toEnd.link != null){  
+                    toEnd = toEnd.link;
+                }
+                toEnd.link = newNode;
+            }
+
+            void insertAt(int index, int info){
+
+            }
+
+            void deleteAt(int index){
+                if(first == null){
+                    System.out.println("Empty LinkedList.");
+                    return;
+                }
+                Node toMid = first;
+                for(int i = 1;i < index - 1;i++){
+                    if(toMid == null) {
+                        System.out.println("Index is not thier.");      
+                        return;
+                    }
+                    toMid = toMid.link;
+                }
+                if(toMid.link == null){
+                    System.out.println("Index is not thier.");
+                    return;
+                }
+                toMid.link = toMid.link.link;
+                System.out.println("Deleted..");
+            }
 
         }
 
