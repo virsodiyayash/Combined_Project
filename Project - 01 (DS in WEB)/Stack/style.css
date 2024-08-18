@@ -1,6 +1,6 @@
 *{
     margin: 0px;
-    padding: 0xx;   
+    padding: 0px;   
     box-sizing: border-box;
 }
 
@@ -58,8 +58,8 @@ body{
 }
 
 .innerbox select{
-    /* I have change in my code because it shows bigger in my code */
-    height: 10%;   
+    text-align: center;
+    height: 100%;   
 }
 
 #parameter{
@@ -174,16 +174,7 @@ input{
     overflow-y: scroll;
 }
 
-.container{
-    height: 85vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.box {
+.stack {
     position: relative;
     display: flex;
     flex-direction: column-reverse;
