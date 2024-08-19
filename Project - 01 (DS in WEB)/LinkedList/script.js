@@ -5,6 +5,7 @@ const linkedlistBox = document.getElementById('linkedlist');
 let functionCode = 0;
 let linkedlist = [];
 
+
 select.addEventListener('change' , (e)=>{
     parameter.innerHTML = functionParameter[select.value];
     functionCode = parseInt(select.value);
