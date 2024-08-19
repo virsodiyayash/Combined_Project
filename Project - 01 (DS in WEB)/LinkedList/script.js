@@ -134,6 +134,6 @@ document.getElementById('showCode').addEventListener('click', (e)=>{
     document.getElementById('background').style.visibility = 'visible';
 });
 
-document.getElementById('background').addEventListener('click', ()=>{
+document.getElementById('close').addEventListener('click', ()=>{
     document.getElementById('background').style.visibility = 'hidden';
 });
