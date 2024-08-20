@@ -22,7 +22,6 @@ function enter(){
                 return;
             }
             pushStack();
-            count = count + 1;
             break;
         case 2 :
             if(count - 1 < 0){
@@ -30,7 +29,6 @@ function enter(){
                 return;
             }
             popStack();
-            count = count - 1;
             break;
         case 3 :
             peekStack();
@@ -66,6 +64,7 @@ function pushStack(){
     // inputNumber.value = '';
     // inputText.style.display = 'none';
     changeStatus('Node is Successfully Added', 'green');
+    count = count + 1;
 }
 
 function popStack(){
@@ -78,13 +77,14 @@ function popStack(){
         setTimeout(() => {
             stack.removeChild(lastElement);
             changeStatus('Node is successfully removed' , 'green');
+            count = count - 1;
         } , 400);
     }
 }
 
 function peekStack(){
     const lastElement = stack.lastElementChild;
-    const data = stackArray.pop();
+    const data = stackArray[ stackArray.length - 1 ];
 
     if(lastElement){
         lastElement.classList.add('stackColor');
@@ -100,11 +100,11 @@ function peekStack(){
 }
 
 function changeStack(){
-
+    
 }
 
 function sizeStack(){
-    changeStatus("The size of the stack is "+count , 'green');
+    changeStatus("The size of the stack is "+ count , 'green');
 }
 
 
