@@ -59,12 +59,16 @@ function pushStack(){
     stackArray.push(data);
     const numberElement = document.createElement('div');
     numberElement.classList.add('number');
+    numberElement.classList.add('fade-In');
     numberElement.textContent = data;
     stack.appendChild(numberElement);
     // inputNumber.value = '';
     // inputText.style.display = 'none';
     changeStatus('Node is Successfully Added', 'green');
     count = count + 1;
+    setTimeout(() => {
+        numberElement.classList.remove('fade-In');
+    } , 500);
 }
 
 function popStack(){
@@ -92,7 +96,7 @@ function peekStack(){
 
         setTimeout(() => {
             lastElement.classList.remove('stackColor');
-        } , 2000);
+        } , 1500);
     }
 } 
 
@@ -102,7 +106,7 @@ function changeStack(){
 }
 
 function sizeStack(){
-    changeStatus("The size of the stack is "+ count , 'green');
+    changeStatus("The size of the stack is " + count , 'green');
 }
 
 

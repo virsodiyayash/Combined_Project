@@ -193,6 +193,9 @@ input{
     background-color: #fff;
     border: 2px solid #000;
     font-size: 1.5em;
+}
+
+.fade-In {
     animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -224,7 +227,7 @@ input{
 
 
 .stackColor{
-    animation: stackPeek 2s ease-in-out ;
+    animation: stackPeek 1.5s ease-in-out ;
 }
 
 @keyframes stackPeek {
