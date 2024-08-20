@@ -30,6 +30,7 @@ function enter(){
                 return;
             }
             popStack();
+            count = count - 1;
             break;
         case 3 :
             peekStack();
@@ -82,10 +83,31 @@ function popStack(){
 }
 
 function peekStack(){
-    let data = stackArray.pop();
-    changeStatus("The last node is " + data , 'green');
+    const lastElement = stack.lastElementChild;
+    const data = stackArray.pop();
+
+    if(lastElement){
+        lastElement.classList.add('stackColor');
+        changeStatus("The last node is " + data , 'green');
+
+        setTimeout(() => {
+            lastElement.style.backgroundColor = 'transparent';
+            setTimeout(() => {
+                lastElement.classList.remove('stackColor');
+            } , 2000)
+        } , 3000);
+    } 
+}
+
+function changeStack(){
 
 }
+
+function sizeStack(){
+    changeStatus("The size of the stack is "+count , 'green');
+}
+
+
 
 // const inputText = document.getElementById('input_text');
 // const inputNumber = document.querySelector('.input_number');
