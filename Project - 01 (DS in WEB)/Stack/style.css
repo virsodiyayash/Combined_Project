@@ -221,7 +221,7 @@ input{
 }
 
 .stackColor{
-    transition: background-color 2s ease-in-out;
+    transition: background-color 1.5s ease-in-out;
     background-color: red;
 }
 
