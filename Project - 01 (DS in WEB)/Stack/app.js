@@ -84,7 +84,6 @@ function popStack(){
 
 function peekStack(){
     const lastElement = stack.lastElementChild;
-    lastElement.classList.add('stackColor');
     const data = stackArray[ stackArray.length - 1 ];
 
     if(lastElement){
@@ -93,12 +92,6 @@ function peekStack(){
 
         setTimeout(() => {
             lastElement.classList.remove('stackColor');
-            // lastElement.style.backgroundColor = 'transparent';
-            // stack.removeChild(lastElement);
-            // const numberElement = document.createElement('div');
-            // numberElement.classList.add('number');
-            // numberElement.textContent = stackArray[ stackArray.length - 1 ];
-            // stack.appendChild(numberElement);
         } , 2000);
     }
 } 

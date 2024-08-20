@@ -224,15 +224,17 @@ input{
 
 
 .stackColor{
-    transition: background-color 1.5s ease-in-out;
-    background-color: red;
+    animation: stackPeek 2s ease-in-out ;
 }
 
 @keyframes stackPeek {
     0% {
-        background-color: red;
+        background-color: transparent;
     }
     50% {
         background-color: red;
+    }
+    100% {
+        background-color: transparent;
     }
 }
