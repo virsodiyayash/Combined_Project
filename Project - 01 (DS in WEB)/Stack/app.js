@@ -84,15 +84,14 @@ function popStack(){
 
 function peekStack(){
     const lastElement = stack.lastElementChild;
-<<<<<<< HEAD
+
     lastElement.classList.add('stackColor');
-=======
     const data = stackArray[ stackArray.length - 1 ];
 
     if(lastElement){
         lastElement.classList.add('stackColor');
         changeStatus("The last node is " + data , 'green');
->>>>>>> 43039ec33eb6622a297173188f474c54655fa0b7
+
 
     setTimeout(() => {
         lastElement.style.backgroundColor = 'transparent';
@@ -101,7 +100,7 @@ function peekStack(){
         } , 1000)
     } , 2000);
 } 
-
+}
 
 function changeStack(){
     
