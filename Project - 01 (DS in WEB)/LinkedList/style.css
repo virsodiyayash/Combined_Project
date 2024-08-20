@@ -24,6 +24,7 @@ body{
 }
 
 #showCode{
+    height: 70%;
     padding: 0em 1.5em;
 }
 
@@ -58,7 +59,8 @@ body{
 }
 
 .innerbox select{
-    height: 100%;
+    height: 70%;
+    text-align: center;
 }
 
 #parameter{
@@ -117,25 +119,14 @@ input{
 }
 
 .node{
-    width: 10em;
-    height: 7.5em;
+    min-width: 5em;
+    min-height: 5em;
+    font-size: 1.4em;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid;
     border-radius: 2em;  
-}
-
-.node div{
-    width: 5em;
-    height: 7.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.node div:first-child{
-    border-right: 1px solid;
 }
 
 #close{
