@@ -59,12 +59,16 @@ function pushStack(){
     stackArray.push(data);
     const numberElement = document.createElement('div');
     numberElement.classList.add('number');
+    numberElement.classList.add('fade-In');
     numberElement.textContent = data;
     stack.appendChild(numberElement);
     // inputNumber.value = '';
     // inputText.style.display = 'none';
     changeStatus('Node is Successfully Added', 'green');
     count = count + 1;
+    setTimeout(() => {
+        numberElement.classList.remove('fade-In');
+    } , 500);
 }
 
 function popStack(){
@@ -94,13 +98,7 @@ function peekStack(){
 
         setTimeout(() => {
             lastElement.classList.remove('stackColor');
-            // lastElement.style.backgroundColor = 'transparent';
-            // stack.removeChild(lastElement);
-            // const numberElement = document.createElement('div');
-            // numberElement.classList.add('number');
-            // numberElement.textContent = stackArray[ stackArray.length - 1 ];
-            // stack.appendChild(numberElement);
-        } , 2000);
+        } , 1500);
     }
 } 
 
@@ -110,10 +108,17 @@ function changeStack(){
 }
 
 function sizeStack(){
-    changeStatus("The size of the stack is "+ count , 'green');
+    changeStatus("The size of the stack is " + count , 'green');
 }
 
+// The two EventListeners below toggles the visibility of the 'background' element when the 'showCode' and 'close' buttons are clicked.
+document.getElementById('showCode').addEventListener('click', (e)=>{
+    document.getElementById('background').style.visibility = 'visible';
+});
 
+document.getElementById('close').addEventListener('click', ()=>{
+    document.getElementById('background').style.visibility = 'hidden';
+});
 
 // const inputText = document.getElementById('input_text');
 // const inputNumber = document.querySelector('.input_number');
