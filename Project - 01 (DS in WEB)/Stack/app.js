@@ -92,15 +92,18 @@ function peekStack(){
         lastElement.classList.add('stackColor');
         changeStatus("The last node is " + data , 'green');
 
-
-    setTimeout(() => {
-        lastElement.style.backgroundColor = 'transparent';
         setTimeout(() => {
             lastElement.classList.remove('stackColor');
-        } , 1000)
-    } , 2000);
+            // lastElement.style.backgroundColor = 'transparent';
+            // stack.removeChild(lastElement);
+            // const numberElement = document.createElement('div');
+            // numberElement.classList.add('number');
+            // numberElement.textContent = stackArray[ stackArray.length - 1 ];
+            // stack.appendChild(numberElement);
+        } , 2000);
+    }
 } 
-}
+
 
 function changeStack(){
     
