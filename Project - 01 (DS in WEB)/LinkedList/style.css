@@ -118,6 +118,20 @@ input{
     gap: 2em; 
 }
 
+#linkedlist::before{
+    content: "";
+    display: block;
+    min-width: 100%;
+    border: 1px solid;
+}
+
+#linkedlist::after{
+    content: "";
+    display: block;
+    min-width: 100%;
+    border: 1px solid;
+}
+
 .node{
     min-width: 5em;
     min-height: 5em;

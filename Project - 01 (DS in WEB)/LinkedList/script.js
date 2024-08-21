@@ -164,7 +164,7 @@ async function deleteByIndex(){
         return;
     }
 
-    for(let i = 0 ; i <= index && i < linkedlist.length ; i++){
+    for(let i = 0 ; i < index && i < linkedlist.length ; i++){
         document.querySelector('._' + i).classList.add('current');
         await delay(500);
         document.querySelector('._' + i).classList.remove('current');
