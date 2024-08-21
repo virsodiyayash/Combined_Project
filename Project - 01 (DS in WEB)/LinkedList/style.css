@@ -86,8 +86,8 @@ input{
     border-right: 1px solid;
 }
 
-.button button{
-    width: 80%;
+.execution{
+    width: 70%;
     height: 100%;
 }
 
@@ -163,4 +163,56 @@ input{
     font-size: 1.3em;
     border: 1px solid;
     overflow-y: scroll;
+}
+
+.fade-In {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease-in-out;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
+.current{
+    animation: current 0.5s linear;
+}
+
+@keyframes current {
+    0% {
+        transform: scale(1);
+        background-color: transparent;        
+        color: black;        
+    }
+    90% {
+        transform: scale(1.2);
+        background-color: black;
+        color: white;        
+    }
+    100%{
+        transform: scale(1);
+        background-color: transparent;
+        color: black;        
+    }
 }
