@@ -103,23 +103,32 @@ input{
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
+    padding: 5em;
 }
 
 #linkedlist{
     width: 100%;    
-    height: 40%;
-    border-top: 1px solid;
-    border-bottom: 1px solid;
-    overflow-x: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    /* overflow-y: scroll; */
+    gap: 1em; 
+}
+
+#linkedlist .row{
+    width: 100%;
+    height: auto;
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap; 
-    gap: 2em; 
+    gap: auto; 
+    gap: 2em;
 }
 
 .node{
-    min-width: 5em;
+    min-width: 14%;
     min-height: 5em;
     font-size: 1.4em;
     display: flex;
@@ -127,6 +136,11 @@ input{
     justify-content: center;
     border: 1px solid;
     border-radius: 2em;  
+}
+
+.null{
+    min-width: 8%;
+    border: 0px;
 }
 
 #close{
@@ -196,7 +210,7 @@ input{
 }
 
 .current{
-    animation: current 0.5s linear;
+    animation: current 0.25s linear;
 }
 
 @keyframes current {

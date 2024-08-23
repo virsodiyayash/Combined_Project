@@ -48,7 +48,7 @@ async function enter(){
             break;
     }
     let value = document.getElementById('data');
-    if(value!= null){
+    if(value != null){
         value.value = '';
         value.focus();
     }
@@ -81,14 +81,15 @@ async function insertAtEnd(){
 
     for(let i = 0 ; i < linkedlist.length ; i++){
         document.querySelector('._' + i).classList.add('current');
-        await delay(500);
+        await delay(250);
         document.querySelector('._' + i).classList.remove('current');
     }
-
     linkedlist.push(data);
     print();
     document.querySelector('._' + (linkedlist.length - 1) ).classList.add('fade-In');
     changeStatus('Node is Successfully Added', 'green');
+    await delay(500);
+    document.querySelector('._' + (linkedlist.length - 1)).classList.remove('fade-In');
 }
 
 
@@ -105,6 +106,8 @@ async function insertAtFirst(){
     linkedlist.unshift(data);
     print();
     document.querySelector('._0').classList.add('fade-In');
+    await delay(500);
+    document.querySelector('._0').classList.remove('fade-In');
     changeStatus('Node is Successfully Added', 'green');
 }
 
@@ -128,7 +131,7 @@ async function insertAtIndex(){
 
     for(let i = 0 ; i < index && i < linkedlist.length ; i++){
         document.querySelector('._' + i).classList.add('current');
-        await delay(500);
+        await delay(250);
         document.querySelector('._' + i).classList.remove('current');
     }
 
@@ -140,6 +143,8 @@ async function insertAtIndex(){
     linkedlist.splice( index, 0, data);
     print();
     document.querySelector('._' + index).classList.add('fade-In');
+    await delay(500);
+    document.querySelector('._' + index).classList.remove('fade-In');
     changeStatus('Node is Successfully Added', 'green');
 }
 
@@ -166,7 +171,7 @@ async function deleteByIndex(){
 
     for(let i = 0 ; i < index && i < linkedlist.length ; i++){
         document.querySelector('._' + i).classList.add('current');
-        await delay(500);
+        await delay(250);
         document.querySelector('._' + i).classList.remove('current');
     }
 
@@ -199,7 +204,7 @@ async function deleteByData(){
 
     for(let i = 0 ; i < linkedlist.length ; i++){
         document.querySelector('._' + i).classList.add('current');
-        await delay(500);
+        await delay(250);
         document.querySelector('._' + i).classList.remove('current');
         if(linkedlist[i] == data){
             index = i;
@@ -223,24 +228,51 @@ async function deleteByData(){
 // The print function updated content of the div with class 'linkedlist'.
 function print(){
     linkedlistBox.innerHTML = "";
-
+    let width = linkedlistBox.clientWidth;
+    let current = 0;
     
-    for(let i = 0 ; i < linkedlist.length ; i++){
-        const node = document.createElement('div');
-        const link = document.createElement('i');
-        
-        node.classList.add('node');
-        node.textContent = linkedlist[i];
-        node.classList.add('_' + i);
-        
-        link.classList.add('fa-solid');
-        link.classList.add('fa-arrow-right-long');    
-
-        linkedlistBox.appendChild(node);
-        linkedlistBox.appendChild(link);
+    while(current < linkedlist.length){
+        const row = document.createElement('div');
+        row.classList.add('row');
+        row.style.flexDirection = ( (current/5) % 2 == 0 ) ? "row" : "row-reverse" ;
+        let arrowClass = ( (current/5) % 2  == 0 ) ? 'fa-arrow-right-long' : 'fa-arrow-left-long';
+        let i;
+        for(i = 0 ; current < linkedlist.length && i < 5 ; i++){
+            const node = document.createElement('div');
+            const link = document.createElement('i');
+            
+            node.classList.add('node');
+            node.textContent = linkedlist[current];
+            node.classList.add('_' + current);
+            
+            link.classList.add('fa-solid');
+            link.classList.add(arrowClass);    
+            
+            row.appendChild(node);
+            row.appendChild(link);
+            current++;
+        }
+        if(i == 5){
+            row.lastChild.remove();
+            if((current/5) % 2 == 1) row.innerHTML += '<i class="fa-solid fa-arrow-turn-down" style=" transform: translateY(50%) "></i>';
+            else row.innerHTML += '<i class="fa-solid fa-arrow-turn-up" style=" transform: translateY(50%) rotateZ(180deg) "></i>';
+        }
+        linkedlistBox.appendChild(row);
+    }   
+    
+    if(current % 5 == 0) {
+        const row = document.createElement('div');
+        row.classList.add('row');
+        row.style.flexDirection = ( (current/5) % 2 == 0 ) ? "row" : "row-reverse" ;
+        linkedlistBox.appendChild(row);
     }
-    
-    linkedlistBox.innerHTML += 'NULL';
+
+    const node = document.createElement('div');
+    node.classList.add('node');
+    node.classList.add('null');
+    node.textContent = 'Null';
+
+    linkedlistBox.lastChild.appendChild(node);
 }
 
 
@@ -260,3 +292,8 @@ document.getElementById('showCode').addEventListener('click', (e)=>{
 document.getElementById('close').addEventListener('click', ()=>{
     document.getElementById('background').style.visibility = 'hidden';
 });
+
+document.addEventListener('keypress',(e) => {
+    // console.log(e);
+    if(e.code == 'Enter') enter();
+})
