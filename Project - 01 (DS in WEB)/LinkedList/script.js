@@ -4,28 +4,38 @@ const statusbox = document.getElementById('status');
 const linkedlistBox = document.getElementById('linkedlist');
 let functionCode = 0;
 let linkedlist = [];
-
+let nodeCountInRow = 5;
+let width = 0;
+let innerHeight = 20;
+let functionWorking = false;
 
 print();
-
 
 //The EventListener below changes the parameters as the user changes the function.
 select.addEventListener('change' , (e)=>{
     parameter.innerHTML = functionParameter[select.value];
     functionCode = parseInt(select.value);
+    let value = document.getElementById('data');
+    if(value != null){
+        value.focus();
+    }
     let index = document.getElementById('index');
     if(index != null){
         index.focus();
-        return;
     }
-    let value = document.getElementById('data');
-    value.focus();
 });
 
 
 
 // For calling different function.
 async function enter(){
+    if( functionWorking ) return;
+    functionWorking = true;
+
+    let value = document.getElementById('data');
+    if(value != null) value.blur();
+    let index = document.getElementById('index');
+    if(index != null) index.blur();
 
     switch(functionCode){
         case 0 :
@@ -47,24 +57,27 @@ async function enter(){
             await deleteByData();
             break;
     }
-    let value = document.getElementById('data');
+    
     if(value != null){
         value.value = '';
         value.focus();
     }
-    let index = document.getElementById('index');
     if(index != null){
         index.value = '';
         index.focus();
     }
+    functionWorking = false;
 }
 
 
 
 // changeStatus function Update the status in div having status class.
-function changeStatus(text, color){
+async function changeStatus(text, color){
     statusbox.style.color = color;
     statusbox.innerHTML = text;
+    statusbox.classList.add('statusBlink');
+    await delay(300);
+    statusbox.classList.remove('statusBlink');
 }
 
 
@@ -183,6 +196,7 @@ async function deleteByIndex(){
     linkedlist.splice(index, 1);
     setTimeout( print , 500);
     changeStatus('Node is Successfully Deleted', 'green');
+    // linkedlistBox.scrollTop = linkedlistBox.scrollHeight;
 }
 
 
@@ -228,16 +242,16 @@ async function deleteByData(){
 // The print function updated content of the div with class 'linkedlist'.
 function print(){
     linkedlistBox.innerHTML = "";
-    let width = linkedlistBox.clientWidth;
     let current = 0;
-    
+    let count = nodeCountInRow
     while(current < linkedlist.length){
         const row = document.createElement('div');
         row.classList.add('row');
-        row.style.flexDirection = ( (current/5) % 2 == 0 ) ? "row" : "row-reverse" ;
-        let arrowClass = ( (current/5) % 2  == 0 ) ? 'fa-arrow-right-long' : 'fa-arrow-left-long';
+        row.style.flexDirection = ( (current / count) % 2 == 0 ) ? "row" : "row-reverse" ;
+        row.style.padding = ( (current / count) % 2 == 0 ) ? "0px " + innerHeight / 2 + "px 0px 0px" : "0px 0px 0px " + innerHeight / 2 + "px" ;
+        var arrowClass = ( (current / count) % 2  == 0 ) ? 'fa-arrow-right-long' : 'fa-arrow-left-long';
         let i;
-        for(i = 0 ; current < linkedlist.length && i < 5 ; i++){
+        for(i = 0 ; current < linkedlist.length && i < count ; i++){
             const node = document.createElement('div');
             const link = document.createElement('i');
             
@@ -252,27 +266,42 @@ function print(){
             row.appendChild(link);
             current++;
         }
-        if(i == 5){
+        if(i == count){
             row.lastChild.remove();
-            if((current/5) % 2 == 1) row.innerHTML += '<i class="fa-solid fa-arrow-turn-down" style=" transform: translateY(50%) "></i>';
+            if((current / count) % 2 == 1) row.innerHTML += '<i class="fa-solid fa-arrow-turn-down" style=" transform: translateY(50%) "></i>';
             else row.innerHTML += '<i class="fa-solid fa-arrow-turn-up" style=" transform: translateY(50%) rotateZ(180deg) "></i>';
         }
         linkedlistBox.appendChild(row);
     }   
     
-    if(current % 5 == 0) {
+    if(current % count == 0) {
         const row = document.createElement('div');
         row.classList.add('row');
-        row.style.flexDirection = ( (current/5) % 2 == 0 ) ? "row" : "row-reverse" ;
+        row.style.flexDirection = ( (current / count) % 2 == 0 ) ? "row" : "row-reverse" ;
+        row.style.padding = ( (current / count) % 2 == 0 ) ? "0px " + innerHeight / 2 + "px 0px 0px" : "0px 0px 0px " + innerHeight / 2 + "px" ;
         linkedlistBox.appendChild(row);
     }
-
+    
     const node = document.createElement('div');
     node.classList.add('node');
     node.classList.add('null');
     node.textContent = 'Null';
-
     linkedlistBox.lastChild.appendChild(node);
+    current++;
+
+    while(current % count != 0){
+        const node = document.createElement('div');
+        node.classList.add('node');
+        node.classList.add('null');
+        linkedlistBox.lastChild.appendChild(node);
+        current++;
+    }
+
+    
+    width = linkedlistBox.clientWidth;
+    innerHeight = document.querySelector('.row').clientHeight;
+    nodeCountInRow = Math.floor( (width - (innerHeight) ) / ( (innerHeight * 1.5 ) ) );
+    console.log(width, innerHeight, nodeCountInRow);
 }
 
 
