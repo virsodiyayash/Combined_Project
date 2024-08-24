@@ -106,7 +106,7 @@ input{
     align-items: flex-start;
     overflow-y: auto;
     position: relative;
-    padding: 5em 1em;
+    padding: 10% 1em;
 }
 
 #linkedlist{

@@ -28,7 +28,7 @@ select.addEventListener('change' , (e)=>{
 
 
 // For calling different function.
-async function enter(){
+async function runSelectedFunction(){
     if( functionWorking ) return;
     functionWorking = true;
 
@@ -92,11 +92,8 @@ async function insertAtEnd(){
     }
     data = parseInt(data.value);
 
-    for(let i = 0 ; i < linkedlist.length ; i++){
-        document.querySelector('._' + i).classList.add('current');
-        await delay(250);
-        document.querySelector('._' + i).classList.remove('current');
-    }
+    await travelToIndex(linkedlist.length);
+
     linkedlist.push(data);
     print();
     document.querySelector('._' + (linkedlist.length - 1) ).classList.add('fade-In');
@@ -142,11 +139,7 @@ async function insertAtIndex(){
         return;
     }
 
-    for(let i = 0 ; i < index && i < linkedlist.length ; i++){
-        document.querySelector('._' + i).classList.add('current');
-        await delay(250);
-        document.querySelector('._' + i).classList.remove('current');
-    }
+    await travelToIndex(index);
 
     if(index > linkedlist.length){
         changeStatus('Index ' + index + ' doesn\'t exist', 'red');
@@ -182,11 +175,7 @@ async function deleteByIndex(){
         return;
     }
 
-    for(let i = 0 ; i < index && i < linkedlist.length ; i++){
-        document.querySelector('._' + i).classList.add('current');
-        await delay(250);
-        document.querySelector('._' + i).classList.remove('current');
-    }
+    await travelToIndex(index);
 
     if(index >= linkedlist.length ){
         changeStatus('Index ' + index + ' doesn\'t exist', 'red');
@@ -214,22 +203,15 @@ async function deleteByData(){
         return;
     }
     data = parseInt(data.value);
-    let index = -1;
-
-    for(let i = 0 ; i < linkedlist.length ; i++){
-        document.querySelector('._' + i).classList.add('current');
-        await delay(250);
-        document.querySelector('._' + i).classList.remove('current');
-        if(linkedlist[i] == data){
-            index = i;
-            break;
-        }
-    }
+    let index = linkedlist.findIndex(d => d == data);
 
     if(index == -1){
+        await travelToIndex(linkedlist.length);
         changeStatus('The linked list doesn\'t contain the value ' + data, 'orange');
         return;
     }
+
+    await travelToIndex(index);
 
     document.querySelector('._' + index).classList.add('fade-Out');
     linkedlist.splice(index, 1);
@@ -238,29 +220,53 @@ async function deleteByData(){
 }
 
 
+async function travelToIndex(index){
+    for(let i = 0 ; i < index && i < linkedlist.length ; i++){
+        document.querySelector('._' + i).scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',    
+            inline: 'nearest' 
+        });
+        document.querySelector('._' + i).classList.add('current');
+        await delay(250);
+        document.querySelector('._' + i).classList.remove('current');
+    }
+}
+
+
+// The createElementWith function create element with given tag, classes, id, content and return it. 
+function createElementWith(HTMLtag, allClass, id, content){
+    let element = document.createElement(HTMLtag);
+    for(let i = 0 ; i < allClass.length ; i++){
+        element.classList.add(allClass[i]);
+    }
+    element.id = id;
+    element.textContent = content;
+    return element;
+}
+
+
+// The createRow function create row with default parameters and return it. 
+function createRow(count , current){
+    const row = createElementWith('div', ['row'], null, "");
+    row.style.flexDirection = ( (current / count) % 2 == 0 ) ? "row" : "row-reverse" ;
+    row.style.padding = ( (current / count) % 2 == 0 ) ? "0px " + innerHeight / 2 + "px 0px 0px" : "0px 0px 0px " + innerHeight / 2 + "px" ;
+    return row;
+}
 
 // The print function updated content of the div with class 'linkedlist'.
 function print(){
     linkedlistBox.innerHTML = "";
     let current = 0;
-    let count = nodeCountInRow
+    let count = nodeCountInRow;
+
     while(current < linkedlist.length){
-        const row = document.createElement('div');
-        row.classList.add('row');
-        row.style.flexDirection = ( (current / count) % 2 == 0 ) ? "row" : "row-reverse" ;
-        row.style.padding = ( (current / count) % 2 == 0 ) ? "0px " + innerHeight / 2 + "px 0px 0px" : "0px 0px 0px " + innerHeight / 2 + "px" ;
+        const row = createRow(count , current);
         var arrowClass = ( (current / count) % 2  == 0 ) ? 'fa-arrow-right-long' : 'fa-arrow-left-long';
         let i;
         for(i = 0 ; current < linkedlist.length && i < count ; i++){
-            const node = document.createElement('div');
-            const link = document.createElement('i');
-            
-            node.classList.add('node');
-            node.textContent = linkedlist[current];
-            node.classList.add('_' + current);
-            
-            link.classList.add('fa-solid');
-            link.classList.add(arrowClass);    
+            const node = createElementWith('div', ['node', '_' + current], null, linkedlist[current]);
+            const link = createElementWith('i', ['fa-solid', arrowClass], null, "");   
             
             row.appendChild(node);
             row.appendChild(link);
@@ -275,33 +281,23 @@ function print(){
     }   
     
     if(current % count == 0) {
-        const row = document.createElement('div');
-        row.classList.add('row');
-        row.style.flexDirection = ( (current / count) % 2 == 0 ) ? "row" : "row-reverse" ;
-        row.style.padding = ( (current / count) % 2 == 0 ) ? "0px " + innerHeight / 2 + "px 0px 0px" : "0px 0px 0px " + innerHeight / 2 + "px" ;
+        const row = createRow(count , current);
         linkedlistBox.appendChild(row);
     }
     
-    const node = document.createElement('div');
-    node.classList.add('node');
-    node.classList.add('null');
-    node.textContent = 'Null';
+    const node = createElementWith('div', ['node', 'null'], null, "Null");
     linkedlistBox.lastChild.appendChild(node);
     current++;
-
+    
     while(current % count != 0){
-        const node = document.createElement('div');
-        node.classList.add('node');
-        node.classList.add('null');
+        const node = createElementWith('div', ['node', 'null'], null, "");
         linkedlistBox.lastChild.appendChild(node);
         current++;
     }
-
     
     width = linkedlistBox.clientWidth;
     innerHeight = document.querySelector('.row').clientHeight;
     nodeCountInRow = Math.floor( (width - (innerHeight) ) / ( (innerHeight * 1.5 ) ) );
-    console.log(width, innerHeight, nodeCountInRow);
 }
 
 
@@ -322,7 +318,8 @@ document.getElementById('close').addEventListener('click', ()=>{
     document.getElementById('background').style.visibility = 'hidden';
 });
 
+// The below EventListeners is for some shortcuts.
 document.addEventListener('keypress',(e) => {
-    // console.log(e);
-    if(e.code == 'Enter') enter();
-})
+    if(e.code == 'KeyF') select.focus();
+    else if(e.code == 'Enter') runSelectedFunction();
+});
