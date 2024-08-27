@@ -1,6 +1,6 @@
 const select = document.getElementById('function');
 const parameter = document.getElementById('parameter');
-const statusbox = document.getElementById('status');
+const statusbox = document.querySelector('.status');
 const linkedlistBox = document.getElementById('linkedlist');
 let functionCode = 0;
 let linkedlist = [];
@@ -92,10 +92,16 @@ async function insertAtEnd(){
     }
     data = parseInt(data.value);
 
+    if(data < -999 || data > 999){
+        changeStatus("Range of value is -999 to 999", 'red');
+        return;
+    }
+
     await travelToIndex(linkedlist.length);
 
     linkedlist.push(data);
     print();
+    scrollTo( document.querySelector('._' + (linkedlist.length - 1) ) );
     document.querySelector('._' + (linkedlist.length - 1) ).classList.add('fade-In');
     changeStatus('Node is Successfully Added', 'green');
     await delay(500);
@@ -113,8 +119,15 @@ async function insertAtFirst(){
         return;
     }
     data = parseInt(data.value);
+
+    if(data < -999 || data > 999){
+        changeStatus("Range of value is -999 to 999", 'red');
+        return;
+    }
+
     linkedlist.unshift(data);
     print();
+    scrollTo( document.querySelector('._0') ); 
     document.querySelector('._0').classList.add('fade-In');
     await delay(500);
     document.querySelector('._0').classList.remove('fade-In');
@@ -133,6 +146,12 @@ async function insertAtIndex(){
         return;
     }
     index = parseInt(index.value);
+    data = parseInt(data.value);
+
+    if(data < -999 || data > 999){
+        changeStatus("Range of value is -999 to 999", 'red');
+        return;
+    }
 
     if(index < 0){
         changeStatus('Index can\'t be negative', 'red');
@@ -145,9 +164,10 @@ async function insertAtIndex(){
         changeStatus('Index ' + index + ' doesn\'t exist', 'red');
         return;
     }
-    data = parseInt(data.value);
+
     linkedlist.splice( index, 0, data);
     print();
+    scrollTo( document.querySelector('._' + index) );
     document.querySelector('._' + index).classList.add('fade-In');
     await delay(500);
     document.querySelector('._' + index).classList.remove('fade-In');
@@ -181,6 +201,7 @@ async function deleteByIndex(){
         changeStatus('Index ' + index + ' doesn\'t exist', 'red');
         return;
     }
+    scrollTo( document.querySelector('._' + index) );
     document.querySelector('._' + index).classList.add('fade-Out');
     linkedlist.splice(index, 1);
     setTimeout( print , 500);
@@ -203,6 +224,12 @@ async function deleteByData(){
         return;
     }
     data = parseInt(data.value);
+
+    if(data < -999 || data > 999){
+        changeStatus("Range of value is -999 to 999", 'red');
+        return;
+    }
+
     let index = linkedlist.findIndex(d => d == data);
 
     if(index == -1){
@@ -212,7 +239,7 @@ async function deleteByData(){
     }
 
     await travelToIndex(index);
-
+    scrollTo( document.querySelector('._' + index) );
     document.querySelector('._' + index).classList.add('fade-Out');
     linkedlist.splice(index, 1);
     setTimeout( print , 500);
@@ -222,15 +249,20 @@ async function deleteByData(){
 
 async function travelToIndex(index){
     for(let i = 0 ; i < index && i < linkedlist.length ; i++){
-        document.querySelector('._' + i).scrollIntoView({
-            behavior: 'smooth',
-            block: 'center',    
-            inline: 'nearest' 
-        });
+        scrollTo( document.querySelector('._' + i) );
         document.querySelector('._' + i).classList.add('current');
         await delay(250);
         document.querySelector('._' + i).classList.remove('current');
     }
+}
+
+
+async function scrollTo(element){
+    element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',    
+        inline: 'nearest' 
+    });
 }
 
 
