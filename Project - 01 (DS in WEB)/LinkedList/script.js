@@ -251,8 +251,11 @@ async function travelToIndex(index){
     for(let i = 0 ; i < index && i < linkedlist.length ; i++){
         scrollTo( document.querySelector('._' + i) );
         document.querySelector('._' + i).classList.add('current');
-        await delay(250);
+        await delay(150);
         document.querySelector('._' + i).classList.remove('current');
+        document.querySelector('.a' + i).classList.add('currentArrow');
+        await delay(150);
+        document.querySelector('.a' + i).classList.remove('currentArrow');
     }
 }
 
@@ -298,7 +301,7 @@ function print(){
         let i;
         for(i = 0 ; current < linkedlist.length && i < count ; i++){
             const node = createElementWith('div', ['node', '_' + current], null, linkedlist[current]);
-            const link = createElementWith('i', ['fa-solid', arrowClass], null, "");   
+            const link = createElementWith('i', ['fa-solid', arrowClass, 'a' + current], null, "");   
             
             row.appendChild(node);
             row.appendChild(link);
@@ -306,8 +309,8 @@ function print(){
         }
         if(i == count){
             row.lastChild.remove();
-            if((current / count) % 2 == 1) row.innerHTML += '<i class="fa-solid fa-arrow-turn-down" style=" transform: translateY(50%) "></i>';
-            else row.innerHTML += '<i class="fa-solid fa-arrow-turn-up" style=" transform: translateY(50%) rotateZ(180deg) "></i>';
+            if((current / count) % 2 == 1) row.innerHTML += '<i class="fa-solid fa-arrow-turn-down ' + 'a' + (current - 1) + '" style=" transform: translateY(50%) "></i>';
+            else row.innerHTML += '<i class="fa-solid fa-arrow-turn-up ' + 'a' + (current - 1) + '" style=" transform: translateY(50%) rotateZ(180deg) "></i>';
         }
         linkedlistBox.appendChild(row);
     }   

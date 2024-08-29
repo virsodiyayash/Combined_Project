@@ -144,7 +144,7 @@ input{
     justify-content: center;
     border: 1px solid;
     border-radius: 2em;  
-    transition: all 0.25s;
+    transition: all 0.15s;
 }
 
 .null{
@@ -223,6 +223,14 @@ input{
     background-color: rgb(60, 60, 60);
     color: white;
     font-weight: 1.5em;
+}
+
+i{
+    transition: all 0.15s;
+}
+
+.currentArrow{
+    transform: scale(1.8);
 }
 
 .statusBlink{
