@@ -101,7 +101,11 @@ input{
     height: 75%;    
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding-top: 5em;
+    padding-bottom: 5em;
+    padding-left: 0;
+    padding-right: 0;
+    align-items: flex-start;
     overflow-y: auto; /* Enable vertical scrolling */
     position: relative;
 }
@@ -256,11 +260,12 @@ input{
     justify-content: flex-start;
     align-items: center;
     width: 400px;
-    min-height: 50%;/* Allow the height to grow */
+    min-height: 75%;/* Allow the height to grow */
     border: 1px solid black;
     border-top: 0px;
     transition: height 0.3s ease;
     overflow-y: auto;
+    scrollbar-width: none;
     /* margin-top: 20%; */
 }
 
