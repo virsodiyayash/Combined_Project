@@ -6,6 +6,9 @@ let functionCode = 0;
 let stackArray = Array().fill(null);
 let count = 0;
 
+let minHeight = stack.offsetHeight;
+let currentHeight = stack.offsetHeight;
+
 select.addEventListener('change' , (e)=>{
     parameter.innerHTML = functionParameter[select.value];
     functionCode = parseInt(select.value);
@@ -74,24 +77,28 @@ function pushStack(){
     changeStatus('Node is Successfully Added', 'green');
     count = count + 1;
 
+    currentHeight += numberElement.offsetHeight;
+    stack.style.height = 'max(' + currentHeight + 'px' + ',' + minHeight + 'px' + ')';
+
     setTimeout(() => {
         numberElement.classList.remove('moving-in');
     } , 500);
 }
 
-function popStack(){
+async function popStack(){
     stackArray.pop();
     const lastElement = stack.lastElementChild;
 
     if(lastElement){
         lastElement.classList.add('fade-out');
-
-        setTimeout(() => {
-            stack.removeChild(lastElement);
-            changeStatus('Node is successfully removed' , 'green');
-            count = count - 1;
-        } , 400);
+        await delay(400);
+        currentHeight -= lastElement.offsetHeight;
+        stack.removeChild(lastElement);
+        changeStatus('Node is successfully removed' , 'green');
+        count = count - 1;
+        stack.style.height = 'max(' + currentHeight + 'px' + ',' + minHeight + 'px' + ')';
     }
+
 }
 
 function peepStack(){
@@ -119,6 +126,20 @@ function sizeStack(){
     changeStatus("The size of the stack is " + count , 'green');
 }
 
+
+
+
+// The delay function pause the function for given ms.
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+
+
+
+
+
 // The two EventListeners below toggles the visibility of the 'background' element when the 'showCode' and 'close' buttons are clicked.
 document.getElementById('showCode').addEventListener('click', (e)=>{
     document.getElementById('background').style.visibility = 'visible';
@@ -127,6 +148,17 @@ document.getElementById('showCode').addEventListener('click', (e)=>{
 document.getElementById('close').addEventListener('click', ()=>{
     document.getElementById('background').style.visibility = 'hidden';
 });
+
+
+
+
+
+
+
+
+
+
+
 
 // const inputText = document.getElementById('input_text');
 // const inputNumber = document.querySelector('.input_number');
