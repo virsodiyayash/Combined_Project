@@ -3,7 +3,7 @@ const parameter = document.getElementById('parameter');
 const stack = document.querySelector('.stack');
 const statusbox = document.getElementById('status');
 let functionCode = 0;
-let stackArray = Array(10).fill(null);
+let stackArray = Array().fill(null);
 let count = 0;
 
 select.addEventListener('change' , (e)=>{
@@ -17,7 +17,7 @@ function enter(){
             changeStatus("Select Function", 'red');
             break;
         case 1 :
-            if(count + 1 > 10){
+            if(!true){
                 changeStatus("Stack is overflow" , "red");
                 return;
             }
@@ -31,7 +31,7 @@ function enter(){
             popStack();
             break;
         case 3 :
-            peekStack();
+            peepStack();
             break;
         case 4 :
             changeStack();
@@ -59,15 +59,23 @@ function pushStack(){
     stackArray.push(data);
     const numberElement = document.createElement('div');
     numberElement.classList.add('number');
-    numberElement.classList.add('fade-In');
+    // numberElement.classList.add('fade-In');
+    // numberElement.textContent = data;
+    // stack.appendChild(numberElement);
+
     numberElement.textContent = data;
     stack.appendChild(numberElement);
+
+    // Add the 'moving' class to trigger the animation
+    numberElement.classList.add('moving-in');
+
     // inputNumber.value = '';
     // inputText.style.display = 'none';
     changeStatus('Node is Successfully Added', 'green');
     count = count + 1;
+
     setTimeout(() => {
-        numberElement.classList.remove('fade-In');
+        numberElement.classList.remove('moving-in');
     } , 500);
 }
 
@@ -86,7 +94,7 @@ function popStack(){
     }
 }
 
-function peekStack(){
+function peepStack(){
     const lastElement = stack.lastElementChild;
 
     lastElement.classList.add('stackColor');

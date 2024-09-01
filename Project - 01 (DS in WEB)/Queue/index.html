@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../colors.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        Queue
+    </div>
+
+    <!-- selection of function -->
+    <div class="functionBar">
+        <!-- display code of node  -->
+        <div class="box">
+            <button class="innerbox" id="showCode">Code</button>
+        </div>
+
+        <!-- select the function for linkedList  -->
+        <div class="box">
+            <div class="innerbox">
+
+                <!-- The Code of a function will be writen below -->
+                <div id="codeOfFunction">
+                    <pre></pre>
+                </div>
+
+                <div class="text">Function : </div>
+
+                <!-- To select Function -->
+                <select name="function" id="function">
+                    <option value="0">-- Select --</option>
+                    <option value="1">InsertAtEnd</option>
+                    <option value="2">deleteAtFirst</option>
+                    <option value="3">InsertAtFirst</option>
+                    <option value="4">deleteAtEnd</option>
+                    <!-- <option value="5">deleteByValue</option> -->
+                </select>
+            </div>
+        </div>
+
+
+        <!-- parameter of the selected function  -->
+        <div class="box" id="parameter">
+            <div class="innerbox"><div style="font-size: 150%;">Parameters</div></div>
+        </div>
+    </div>
+
+    <div class="statusbar">
+
+        <div class="button">
+            <button onclick="enter()" class="execution"> Enter </button>
+        </div>
+        <!-- to give Message for error or something else -->
+        <div class="status" id="status">
+            Status / Message
+        </div>
+    </div>
+
+    <!-- display LinkedList  -->
+    <div class="main">
+        <div id="queue">
+            <!-- Nodes of linkedList -->
+        </div>
+    </div>
+
+    <!-- Complete Code of LinkedList  -->
+    <div id="background">
+        <div id="code">
+            <button id="close">X</button>
+            <pre>
+
+
+            </pre>
+        </div>
+    </div>
+        
+
+    <script src="function.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
