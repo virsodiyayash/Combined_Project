@@ -39,9 +39,9 @@ function enter(){
         case 4 :
             changeStack();
             break;
-        case 5 :
-            sizeStack();
-            break;
+        // case 5 :
+        //     sizeStack();
+        //     break;
     }
 }
 
@@ -76,7 +76,7 @@ function pushStack(){
 
     setTimeout(() => {
         numberElement.classList.remove('moving-in');
-    } , 500);
+    } , 100);
 }
 
 async function popStack(){
@@ -98,6 +98,11 @@ function peepStack(){
 
     let index = document.getElementById('index');
 
+    if(index < 0 || index > stackArray.length){
+        changeStack("Index is not valid please enter valid index" , 'red');
+        return;
+    }
+
     if(index.value == ''){
         changeStatus("Enter Parameter", 'red');
         return;
@@ -116,32 +121,59 @@ function peepStack(){
             selectedElement.classList.remove('stackColor');
         } , 1500);
     }
-
-
-
-    // const lastElement = stack.lastElementChild;
-
-    // lastElement.classList.add('stackColor');
-    // const data = stackArray[ stackArray.length - 1 ];
-
-    // if(lastElement){
-    //     lastElement.classList.add('stackColor');
-    //     changeStatus("The last node is " + data , 'green');
-
-    //     setTimeout(() => {
-    //         lastElement.classList.remove('stackColor');
-    //     } , 1500);
-    // }
 } 
 
 
 function changeStack(){
+    let idx = document.getElementById('idx');
+    let dataForChange = document.getElementById('data');
+
+    if(idx.value < 0 || idx.value > stackArray.length){
+        changeStatus("Index is not valid please enter valid index" , "red");
+    }
+
+    if(idx.value === ''){
+        changeStatus("Enter index", 'red');
+        return;
+    }
+
+    if (dataForChange.value === '') {
+        changeStatus("Enter data", 'red');
+        return;
+    }
+
+    idx = parseInt(idx.value);
+    let dataWithChange = parseInt(dataForChange.value);
+
+    const selectedElementForChange = stack.children[stackArray.length - 1 - idx];
+    const dataWithoutChange = stackArray[stackArray.length - 1 - idx];
+
+    if(selectedElementForChange){
+        selectedElementForChange.classList.add('stackColor');
+        changeStatus(`The value at the index ${idx} is ${dataWithoutChange}` , 'green');
+
+        setTimeout(() => {
+            selectedElementForChange.classList.remove('stackColor');
+        } , 1500);
     
+    
+    stackArray[stackArray.length - 1 - idx] = dataWithChange;
+    selectedElementForChange.textContent = dataWithChange;
+
+   
+        selectedElementForChange.classList.add('changeColor');
+
+        setTimeout(() => {
+            selectedElementForChange.classList.remove('changeColor');
+        } , 1500);
+
+        changeStatus(`The value at index ${idx} has been changed to ${dataWithChange}` , 'green');
+    }
 }
 
-function sizeStack(){
-    changeStatus("The size of the stack is " + count , 'green');
-}
+// function sizeStack(){
+//     changeStatus("The size of the stack is " + count , 'green');
+// }
 
 
 

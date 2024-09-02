@@ -164,7 +164,7 @@ input{
     font-size: 1.5em;
     position: relative;
     top: -100px; /* Start position outside the stack */
-    animation: moveToBottom 0.5s ease-in-out forwards; /* Smooth animation */
+    animation: moveToBottom 1s ease-in-out forwards; /* Smooth animation */
 }
 
 @keyframes moveToStack {
@@ -181,7 +181,7 @@ input{
     top: -50px; /* Position the element above the .main class */
     /* left: 50%; */
     transform: translateX(-50%);
-    animation: moveToStack 0.5s ease-in-out forwards;
+    animation: moveToStack 1s ease-in-out forwards;
 }
 
 .stack {
@@ -195,7 +195,7 @@ input{
     height: max(25%);/* Allow the height to grow */
     border: 1px solid black;
     border-top: 0px;
-    transition: height 0.3s ease;
+    transition: height 0.7s ease;
     overflow-y: auto;
     scrollbar-width: none;
     /* margin-top: 20%; */
@@ -229,4 +229,8 @@ input{
 
 .stackColor{
     background-color: red;
+}
+
+.changeColor{
+    background-color: rgb(7, 228, 7);
 }
