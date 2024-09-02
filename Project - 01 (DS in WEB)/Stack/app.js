@@ -95,32 +95,30 @@ async function popStack(){
 }
 
 function peepStack(){
+   let ind = document.getElementById('ind');
 
-    let index = document.getElementById('index');
+   if(ind.value < 0 || ind.value >= stackArray.length){
+    changeStatus("Index is not valid please enter valid index" , "red");
+   }
 
-    if(index.value < 0 || index.value > stackArray.length){
-        changeStack("Index is not valid please enter valid index" , 'red');
-        return;
-    }
+   if(ind.value = ""){
+    changeStack("Enter index" , 'red');
+    return;
+   }
 
-    if(index.value == ''){
-        changeStatus("Enter Parameter", 'red');
-        return;
-    }
+   ind = parseInt(ind);
 
-    index = parseInt(index.value);
+   const selectedElement = stack.children[stackArray.length - 1 - ind];
+   const data = stackArray[stackArray.length - 1 - ind];
 
-    const selectedElement = stack.children[stackArray.length - 1 - index];
-    const data = stackArray[stackArray.length - 1 - index];
-
-    if(selectedElement){
-        selectedElement.classList.add('stackColor');
-        changeStatus("The node at index " + index + " is " + data,"green");
+   if(selectedElement){
+        selectedElement.classList.add('colorStack');
+        changeStatus(`The value at the index ${ind} is ${data}`);
 
         setTimeout(() => {
-            selectedElement.classList.remove('stackColor');
+            selectedElement.classList.remove('colorStack');
         } , 1500);
-    }
+   }
 } 
 
 
@@ -128,7 +126,7 @@ function changeStack(){
     let idx = document.getElementById('idx');
     let dataForChange = document.getElementById('data');
 
-    if(idx.value < 0 || idx.value > stackArray.length){
+    if(idx.value < 0 || idx.value >= stackArray.length){
         changeStatus("Index is not valid please enter valid index" , "red");
     }
 
