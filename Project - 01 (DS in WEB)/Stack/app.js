@@ -98,7 +98,7 @@ function peepStack(){
 
     let index = document.getElementById('index');
 
-    if(index < 0 || index > stackArray.length){
+    if(index.value < 0 || index.value > stackArray.length){
         changeStack("Index is not valid please enter valid index" , 'red');
         return;
     }
