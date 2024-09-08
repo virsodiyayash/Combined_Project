@@ -2,9 +2,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Queue</title>
+    <title>Linked List</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="../colors.css">
+    <link rel="stylesheet" href="../Colors/Dark.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
@@ -33,11 +33,11 @@
                 <!-- To select Function -->
                 <select name="function" id="function">
                     <option value="0">-- Select --</option>
-                    <option value="1">InsertAtEnd</option>
-                    <option value="2">deleteAtFirst</option>
-                    <option value="3">InsertAtFirst</option>
-                    <option value="4">deleteAtEnd</option>
-                    <!-- <option value="5">deleteByValue</option> -->
+                    <option value="1">insertAtEnd (Enqueue)</option>
+                    <option value="2">deleteAtFirst (Dequeue)</option>
+                    <!-- <option value="3">insertAtIndex</option>
+                    <option value="4">deleteByIndex</option>
+                    <option value="5">deleteByValue</option> -->
                 </select>
             </div>
         </div>
@@ -52,10 +52,10 @@
     <div class="statusbar">
 
         <div class="button">
-            <button onclick="enter()" class="execution"> Enter </button>
+            <button onclick="runSelectedFunction()" class="execution"> Enter </button>
         </div>
         <!-- to give Message for error or something else -->
-        <div class="status" id="status">
+        <div class="status">
             Status / Message
         </div>
     </div>
@@ -73,6 +73,85 @@
             <button id="close">X</button>
             <pre>
 
+
+        class Node{
+            int value;
+            Node link;
+            
+            Node(){
+                this.link = null;
+            }
+            
+            Node(int value){              
+                this.value = value;
+                this.link = null;
+            }
+        }
+
+
+
+
+        class linkedList{
+
+            Node first;
+
+            linkedList(){
+                this.first = null;
+            }
+
+
+            void insertAtFirst(int info){
+                Node newNode = new Node(info);
+                System.out.println("Added..");      
+                if(first == null){
+                    first = newNode;
+                    return;
+                }
+                newNode.link = first;
+                first = newNode;
+            }
+
+
+            void insertAtEnd(int info){
+                Node newNode = new Node(info);
+                System.out.println("Added..");
+                if(first == null){
+                    first = newNode;
+                    return;
+                }
+                Node toEnd = first;
+                while(toEnd.link != null){  
+                    toEnd = toEnd.link;
+                }
+                toEnd.link = newNode;
+            }
+
+            void insertAt(int index, int info){
+
+            }
+
+            void deleteAt(int index){
+                if(first == null){
+                    System.out.println("Empty LinkedList.");
+                    return;
+                }
+                Node toMid = first;
+                for(int i = 1;i < index - 1;i++){
+                    if(toMid == null) {
+                        System.out.println("Index is not thier.");      
+                        return;
+                    }
+                    toMid = toMid.link;
+                }
+                if(toMid.link == null){
+                    System.out.println("Index is not thier.");
+                    return;
+                }
+                toMid.link = toMid.link.link;
+                System.out.println("Deleted..");
+            }
+
+        }
 
             </pre>
         </div>
