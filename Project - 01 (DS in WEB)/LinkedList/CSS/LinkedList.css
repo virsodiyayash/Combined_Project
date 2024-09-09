@@ -21,10 +21,14 @@
     height: 3em;
     position: absolute;
     top: 0%;
-    transform: translateY(-100%);
+    transform: translateY(-150%);
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+#linkedlist .row i{
+    color: white;
 }
 
 .naming > div{
