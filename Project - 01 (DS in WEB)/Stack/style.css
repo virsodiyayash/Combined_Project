@@ -201,6 +201,10 @@ input{
     /* margin-top: 20%; */
 }
 
+.stack div{
+    transition: all 0.5s;
+}
+
 @keyframes moveToBottom {
     0% {
         top: -500px; /* Start outside the stack */
@@ -215,7 +219,8 @@ input{
     top: 0px;
     /* left: 50%; */
     /* transform: translateX(-50%); */
-    animation: removeToStack 0.5s ease-in-out forwards;
+    animation: removeToStack 0.7s ease-in-out forwards;
+    /* animation-direction: reverse; */
 }
 
 @keyframes removeToStack {
@@ -223,7 +228,8 @@ input{
         transform: translateY(0%);
     }
     100% {
-        transform: translateY(-120%);
+        transform: translateY(-800%);
+        opacity: 0;
     }
 }
 

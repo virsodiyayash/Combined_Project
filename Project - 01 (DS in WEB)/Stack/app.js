@@ -85,7 +85,7 @@ async function popStack(){
 
     if(lastElement){
         lastElement.classList.add('moving-out');
-        await delay(500);
+        await delay(700);
         currentHeight -= lastElement.offsetHeight;
         stack.removeChild(lastElement);
         changeStatus('Node is successfully removed' , 'green');
