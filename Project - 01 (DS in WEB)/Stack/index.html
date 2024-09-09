@@ -1,17 +1,24 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DS in Web</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="../Colors/Dark.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="CSS/Theme.css">
+    <link rel="stylesheet" href="CSS/LinkedList.css">
+    <link rel="stylesheet" href="AnimationCSS.css">
+    <link rel="stylesheet" href="../Colors/Colors1.css">
 </head>
+
 <body>
     <div class="header">
         Stack
     </div>
 
     <!-- selection of function -->
+    <div class="bar">
     <div class="functionBar">
         <!-- display code of node  -->
         <div class="box">
@@ -27,7 +34,7 @@
                     <pre></pre>
                 </div>
 
-                <div class="text">Function : </div>
+                Function : 
 
                 <!-- To select Function -->
                 <select name="function" id="function">
@@ -44,19 +51,22 @@
 
         <!-- parameter of the selected function  -->
         <div class="box" id="parameter">
-            <div class="innerbox"><div style="font-size: 150%;">Parameters</div></div>
+            <div class="innerbox">
+                <div style="font-size: 150%;">Parameters</div>
+            </div>
         </div>
     </div>
 
     <div class="statusbar">
 
-        <div class="button">
-            <button onclick="enter()" class="execution"> Enter </button>
+        <div class="box button">
+            <button onclick="runSelectedFunction()" class="execution"> Enter </button>
         </div>
         <!-- to give Message for error or something else -->
         <div class="status" id="status">
             Status
         </div>
+    </div>
     </div>
 
     <!-- display Stack  -->
@@ -144,12 +154,14 @@
             </pre>
         </div>
     </div>
-        
 
-<!--    The div below is the Node of linkedList     -->
-<!--  <div class="node"> <div class="num"> <div>1</div> </div> <div></div> </div>     -->
+
+    <!--    The div below is the Node of linkedList     -->
+    <!--  <div class="node"> <div class="num"> <div>1</div> </div> <div></div> </div>     -->
 
     <script src="function.js"></script>
+    <script src="AnimationJS.js"></script>
     <script src="app.js"></script>
 </body>
+
 </html>

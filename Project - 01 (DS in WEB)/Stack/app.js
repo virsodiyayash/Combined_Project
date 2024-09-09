@@ -14,7 +14,7 @@ select.addEventListener('change' , (e)=>{
     functionCode = parseInt(select.value);
 });
 
-function enter(){
+function runSelectedFunction(){
     switch(functionCode){
         case 0 :
             changeStatus("Select Function", 'red');
@@ -185,4 +185,9 @@ document.getElementById('showCode').addEventListener('click', (e)=>{
 
 document.getElementById('close').addEventListener('click', ()=>{
     document.getElementById('background').style.visibility = 'hidden';
+});
+
+document.addEventListener('keypress',(e) => {
+    if(e.code == 'KeyF') select.focus();
+    else if(e.code == 'Enter') runSelectedFunction();
 });

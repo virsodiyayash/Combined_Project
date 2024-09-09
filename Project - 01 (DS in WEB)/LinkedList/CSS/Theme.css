@@ -37,6 +37,58 @@ body{
     transition: all 0.5s;
 }
 
+.header{
+    visibility: hidden;
+}
+
+.headerAnimation{
+    visibility: visible;
+    animation: header 1s cubic-bezier(0.44, 0.23, 0.45, 1.09) 2.2s 1 forwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.header span {
+    width: 1em;
+    transform: translateY(100vh);
+    display: inline;
+    animation: wave 1s 1 ease-in-out forwards;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+.bar{
+    animation: bar 0.5s cubic-bezier(0.44, 0.23, 0.45, 1.09) 2.2s 1 normal forwards;
+}
+
+@keyframes header {
+    0%{  
+        height: 100vh;
+    }
+    100%{
+        height: 1.8em;
+    }
+}
+
+@keyframes wave {
+    0% {
+        transform: translateY(100vh);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes bar {
+    0%{
+        transform: translateY(100%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
+
 .box{
     /* height: 100%; */
     padding: 0.4em 0.8em;
