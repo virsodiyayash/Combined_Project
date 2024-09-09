@@ -3,9 +3,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linked List</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="../Colors/Dark.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="CSS/Theme.css">
+    <link rel="stylesheet" href="CSS/LinkedList.css">
+    <link rel="stylesheet" href="CSS/AnimationCSS.css">
+    <link rel="stylesheet" href="../Colors/Colors1.css">
 </head>
 <body>
     <div class="header">
@@ -13,50 +15,53 @@
     </div>
 
     <!-- selection of function -->
-    <div class="functionBar">
-        <!-- display code of node  -->
-        <div class="box">
-            <button class="innerbox" id="showCode">Code</button>
-        </div>
+    <div class="bar">
+        <div class="functionBar">
+            <!-- display code of node  -->
+            <div class="box">
+                <button class="innerbox" id="showCode">Code</button>
+            </div>
 
-        <!-- select the function for linkedList  -->
-        <div class="box">
-            <div class="innerbox">
+            <!-- select the function for linkedList  -->
+            <div class="box">
+                <div class="innerbox">
 
-                <!-- The Code of a function will be writen below -->
-                <div id="codeOfFunction">
-                    <pre></pre>
+                    <!-- The Code of a function will be writen below -->
+                    <div id="codeOfFunction">
+                        <pre></pre>
+                    </div>
+
+                    Function : 
+
+                    <!-- To select Function -->
+                    <select name="function" id="function">
+                        <option value="0">-- Select --</option>
+                        <option value="1">insertAtEnd</option>
+                        <option value="2">insertAtFirst</option>
+                        <option value="3">insertAtIndex</option>
+                        <option value="4">deleteByIndex</option>
+                        <option value="5">deleteByValue</option>
+                    </select>
                 </div>
+            </div>
 
-                <div class="text">Function : </div>
 
-                <!-- To select Function -->
-                <select name="function" id="function">
-                    <option value="0">-- Select --</option>
-                    <option value="1">insertAtEnd</option>
-                    <option value="2">insertAtFirst</option>
-                    <option value="3">insertAtIndex</option>
-                    <option value="4">deleteByIndex</option>
-                    <option value="5">deleteByValue</option>
-                </select>
+            <!-- parameter of the selected function  -->
+            <div class="box" id="parameter">
+                <div class="innerbox"><div>Parameters</div></div>
             </div>
         </div>
 
+        <div class="statusbar">
 
-        <!-- parameter of the selected function  -->
-        <div class="box" id="parameter">
-            <div class="innerbox"><div style="font-size: 150%;">Parameters</div></div>
-        </div>
-    </div>
+            <div class="box button">
+                <button onclick="runSelectedFunction()" class="innerbox execution"> Enter </button>
+            </div>
 
-    <div class="statusbar">
-
-        <div class="button">
-            <button onclick="runSelectedFunction()" class="execution"> Enter </button>
-        </div>
-        <!-- to give Message for error or something else -->
-        <div class="status">
-            Status / Message
+            <!-- to give Message for error or something else -->
+            <div class="status">
+                Status / Message
+            </div>
         </div>
     </div>
 
@@ -67,11 +72,13 @@
         </div>
     </div>
 
+
+
+
     <!-- Complete Code of LinkedList  -->
-    <div id="background">
-        <div id="code">
-            <button id="close">X</button>
-            <pre>
+    <dialog id="code">
+        <button id="close">X</button>
+        <pre>
 
 
         class Node{
@@ -153,12 +160,13 @@
 
         }
 
-            </pre>
-        </div>
-    </div>
+        </pre>
+    </dialog>
         
 
-    <script src="function.js"></script>
-    <script src="script.js"></script>
+    <script src="JS/function.js"></script>
+    <script src="JS/Theme.js"></script>
+    <script src="JS/LinkedList.js"></script>
+    <script src="JS/AnimationJS.js"></script>
 </body>
 </html>
