@@ -1,4 +1,4 @@
-const darkGreen = '#457c09';
+const darkGreen = '#4f9503';
 const red = '#a00909';
 const orange = '#8d5b00';
 

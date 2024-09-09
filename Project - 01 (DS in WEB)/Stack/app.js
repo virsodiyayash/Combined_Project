@@ -95,25 +95,28 @@ async function popStack(){
 }
 
 function peepStack(){
-   let ind = document.getElementById('ind');
+   let index = document.getElementById('index');
 
-   if(ind.value < 0 || ind.value >= stackArray.length){
-    changeStatus("Index is not valid please enter valid index" , "red");
-   }
-
-   if(ind.value = ""){
+   if(index.value === ""){
     changeStack("Enter index" , 'red');
     return;
    }
 
-   ind = parseInt(ind);
+   index = parseInt(index.value);
 
-   const selectedElement = stack.children[stackArray.length - 1 - ind];
-   const data = stackArray[stackArray.length - 1 - ind];
+   if(index < 0 || index >= stackArray.length){
+    changeStatus("Index is not valid please enter valid index" , "red");
+    return;
+   }
+
+   console.log(index.value);
+
+   const selectedElement = stack.children[stackArray.length - 1 - index];
+   const data = stackArray[stackArray.length - 1 - index];
 
    if(selectedElement){
         selectedElement.classList.add('colorStack');
-        changeStatus(`The value at the index ${ind} is ${data}`);
+        changeStatus(`The value at the index ${index} is ${data}` , "green");
 
         setTimeout(() => {
             selectedElement.classList.remove('colorStack');
@@ -123,14 +126,14 @@ function peepStack(){
 
 
 function changeStack(){
-    let idx = document.getElementById('idx');
+    let index = document.getElementById('index');
     let dataForChange = document.getElementById('data');
 
-    if(idx.value < 0 || idx.value >= stackArray.length){
+    if(index.value < 0 || index.value >= stackArray.length){
         changeStatus("Index is not valid please enter valid index" , "red");
     }
 
-    if(idx.value === ''){
+    if(index.value === ''){
         changeStatus("Enter index", 'red');
         return;
     }
@@ -140,22 +143,22 @@ function changeStack(){
         return;
     }
 
-    idx = parseInt(idx.value);
+    index = parseInt(index.value);
     let dataWithChange = parseInt(dataForChange.value);
 
-    const selectedElementForChange = stack.children[stackArray.length - 1 - idx];
-    const dataWithoutChange = stackArray[stackArray.length - 1 - idx];
+    const selectedElementForChange = stack.children[stackArray.length - 1 - index];
+    const dataWithoutChange = stackArray[stackArray.length - 1 - index];
 
     if(selectedElementForChange){
         selectedElementForChange.classList.add('stackColor');
-        changeStatus(`The value at the index ${idx} is ${dataWithoutChange}` , 'green');
+        changeStatus(`The value at the index ${index} is ${dataWithoutChange}` , 'green');
 
         setTimeout(() => {
             selectedElementForChange.classList.remove('stackColor');
         } , 1500);
     
     
-    stackArray[stackArray.length - 1 - idx] = dataWithChange;
+    stackArray[stackArray.length - 1 - index] = dataWithChange;
     selectedElementForChange.textContent = dataWithChange;
 
    
@@ -165,15 +168,9 @@ function changeStack(){
             selectedElementForChange.classList.remove('changeColor');
         } , 1500);
 
-        changeStatus(`The value at index ${idx} has been changed to ${dataWithChange}` , 'green');
+        changeStatus(`The value at index ${index} has been changed to ${dataWithChange}` , 'green');
     }
 }
-
-// function sizeStack(){
-//     changeStatus("The size of the stack is " + count , 'green');
-// }
-
-
 
 
 // The delay function pause the function for given ms.
