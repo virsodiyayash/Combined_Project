@@ -2,9 +2,11 @@ const select = document.getElementById('function');
 const parameter = document.getElementById('parameter');
 const stack = document.querySelector('.stack');
 const statusbox = document.querySelector('.status');
+
 let functionCode = 0;
 let stackArray = Array().fill(null);
 let count = 0;
+let functionWorking = false;
 
 let minHeight = stack.offsetHeight;
 let currentHeight = stack.offsetHeight;
@@ -12,9 +14,27 @@ let currentHeight = stack.offsetHeight;
 select.addEventListener('change' , (e)=>{
     parameter.innerHTML = functionParameter[select.value];
     functionCode = parseInt(select.value);
+    let value = document.getElementById('data');
+    if(value != null){
+        value.focus();
+    }
+    let index = document.getElementById('index');
+    if(index != null){
+        index.focus();
+    }
 });
 
 function runSelectedFunction(){
+    if( functionWorking ) return;
+    functionWorking = true;
+
+    let value = document.getElementById('data');
+    if(value != null) value.blur();
+    let index = document.getElementById('index');
+    if(index != null) index.blur();
+
+    let isSuccessfull;
+
     switch(functionCode){
         case 0 :
             changeStatus("Select Function", 'var(--red)');
@@ -22,27 +42,37 @@ function runSelectedFunction(){
         case 1 :
             if(!true){
                 changeStatus("Stack is overflow" , "var(--red)");
-                return;
+                isSuccessfull = false;
             }
-            pushStack();
+            isSuccessfull = pushStack();
             break;
         case 2 :
             if(count - 1 < 0){
                 changeStatus('stack is underflow' , 'var(--red)');
-                return;
+                isSuccessfull = false;
             }
-            popStack();
+            isSuccessfull = popStack();
             break;
         case 3 :
-            peepStack();
+            isSuccessfull = peepStack();
             break;
         case 4 :
-            changeStack();
+            isSuccessfull = changeStack();
             break;
         // case 5 :
         //     sizeStack();
         //     break;
     }
+
+    if(value != null){
+        if(isSuccessfull) value.value = '';
+        value.focus();
+    }
+    if(index != null){
+        if(isSuccessfull) index.value = '';
+        index.focus();
+    }
+    functionWorking = false;
 }
 
 function pushStack(){
@@ -72,6 +102,7 @@ function pushStack(){
     setTimeout(() => {
         numberElement.classList.remove('moving-in');
     } , 100);
+    return true;
 }
 
 async function popStack(){
@@ -87,6 +118,7 @@ async function popStack(){
         count = count - 1;
         stack.style.height = 'max(' + currentHeight + 'px' + ',' + minHeight + 'px' + ')';
     }
+    return true;
 }
 
 function peepStack(){
@@ -117,6 +149,7 @@ function peepStack(){
             console.log(selectedElement);
         } , 1500);
    }
+   return true;
 } 
 
 
@@ -165,4 +198,5 @@ function changeStack(){
 
         changeStatus(`The value at index ${index} has been changed to ${dataWithChange}` , 'var(--darkGreen)');
     }
+    return true;
 }
