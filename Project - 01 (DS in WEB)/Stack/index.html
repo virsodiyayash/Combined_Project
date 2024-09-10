@@ -1,17 +1,14 @@
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DS in Web</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Stack</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="CSS/Theme.css">
-    <link rel="stylesheet" href="CSS/LinkedList.css">
-    <link rel="stylesheet" href="AnimationCSS.css">
+    <link rel="stylesheet" href="CSS/Stack.css">
+    <link rel="stylesheet" href="CSS/AnimationCSS.css">
     <link rel="stylesheet" href="../Colors/Colors1.css">
 </head>
-
 <body>
     <div class="header">
         Stack
@@ -19,149 +16,148 @@
 
     <!-- selection of function -->
     <div class="bar">
-    <div class="functionBar">
-        <!-- display code of node  -->
-        <div class="box">
-            <button class="innerbox" id="showCode">Code</button>
-        </div>
+        <div class="functionBar">
+            <!-- display code of node  -->
+            <div class="box">
+                <button class="innerbox" id="showCode">Code</button>
+            </div>
 
-        <!-- select the function for linkedList  -->
-        <div class="box">
-            <div class="innerbox">
+            <!-- select the function for linkedList  -->
+            <div class="box">
+                <div class="innerbox">
 
-                <!-- The Code of a function will be writen below -->
-                <div id="codeOfFunction">
-                    <pre></pre>
+                    <!-- The Code of a function will be writen below -->
+                    <div id="codeOfFunction">
+                        <pre></pre>
+                    </div>
+
+                    Function : 
+
+                    <!-- To select Function -->
+                    <select name="function" id="function">
+                        <option value="0">-- Select --</option>
+                        <option value="1">push</option>
+                        <option value="2">pop</option>
+                        <option value="3">peep</option>
+                        <option value="4">change</option>
+                    </select>
                 </div>
+            </div>
 
-                Function : 
 
-                <!-- To select Function -->
-                <select name="function" id="function">
-                    <option value="0">-- Select --</option>
-                    <option value="1">push</option>
-                    <option value="2">pop</option>
-                    <option value="3">peep</option>
-                    <option value="4">change</option>
-                    <!-- <option value="5">size</option> -->
-                </select>
+            <!-- parameter of the selected function  -->
+            <div class="box" id="parameter">
+                <div class="innerbox"><div>Parameters</div></div>
             </div>
         </div>
 
+        <div class="statusbar">
 
-        <!-- parameter of the selected function  -->
-        <div class="box" id="parameter">
-            <div class="innerbox">
-                <div style="font-size: 150%;">Parameters</div>
+            <div class="box button">
+                <button onclick="runSelectedFunction()" class="innerbox execution"> Enter </button>
+            </div>
+
+            <!-- to give Message for error or something else -->
+            <div class="status">
+                Status / Message
             </div>
         </div>
     </div>
 
-    <div class="statusbar">
-
-        <div class="box button">
-            <button onclick="runSelectedFunction()" class="execution"> Enter </button>
-        </div>
-        <!-- to give Message for error or something else -->
-        <div class="status" id="status">
-            Status
-        </div>
-    </div>
-    </div>
-
-    <!-- display Stack  -->
+    <!-- display LinkedList  -->
     <div class="main">
         <div class="stack">
+            <!-- Nodes of Stack -->
         </div>
     </div>
 
 
-    <!-- Complete Code of Stack  -->
-    <div id="background">
-        <div id="code">
-            <button id="close">X</button>
-            <pre>
-        public class Stack{
 
-            int[] arr;
-            int top = -1;
 
-            public Stack (int n){
-                arr = new int[n];
+    <!-- Complete Code of LinkedList  -->
+    <dialog id="code">
+        <button id="close">X</button>
+        <pre>
+
+
+            public class Stack{
+
+                int[] arr;
+                int top = -1;
+    
+                public Stack (int n){
+                    arr = new int[n];
+                }
+    
+    
+                public void push(int num){
+    
+                    if(top >= arr.length - 1){
+                        System.out.println("Stack Overflow");       
+                        return;
+                    }
+    
+                    top++;
+                    arr[top] = num;
+                }
+    
+    
+                public int pop(){
+    
+                    if(top == -1){
+                        System.out.println("Stack Underflow(Empty).");      
+                        return -1;
+                    }
+    
+                    return arr[top--];
+                }
+    
+    
+                public void display(){
+    
+                    if(top == -1){
+                        System.out.println("Stack Underflow(Empty).")
+                    }
+    
+                    for(int i = 0 ; i <= top ; i++){
+                        System.out.println(arr[i] + " ");
+                    }
+                }
+    
+    
+                public int peep(int p){
+    
+                    int temp = top - p + 1;
+    
+                    if(top < 0){
+                        System.out.println("Invalid Number");
+                        return -1;
+                    }
+                    return arr[temp];
+                }
+                
+    
+                public void change(int p , int num){
+    
+                    int temp = top - p + i;
+    
+                    if(top < 0){
+                        System.out.println("Invalid Number");
+                        return;
+                    }
+    
+                    arr[temp] = num;
+                    System.out.println("Changed Number");
+                }
             }
 
+        </pre>
+    </dialog>
+        
 
-            public void push(int num){
-
-                if(top >= arr.length - 1){
-                    System.out.println("Stack Overflow");       
-                    return;
-                }
-
-                top++;
-                arr[top] = num;
-            }
-
-
-            public int pop(){
-
-                if(top == -1){
-                    System.out.println("Stack Underflow(Empty).");      
-                    return -1;
-                }
-
-                return arr[top--];
-            }
-
-
-            public void display(){
-
-                if(top == -1){
-                    System.out.println("Stack Underflow(Empty).")
-                }
-
-                for(int i = 0 ; i <= top ; i++){
-                    System.out.println(arr[i] + " ");
-                }
-            }
-
-
-            public int peep(int p){
-
-                int temp = top - p + 1;
-
-                if(top < 0){
-                    System.out.println("Invalid Number");
-                    return -1;
-                }
-                return arr[temp];
-            }
-            
-
-            public void change(int p , int num){
-
-                int temp = top - p + i;
-
-                if(top < 0){
-                    System.out.println("Invalid Number");
-                    return;
-                }
-
-                arr[temp] = num;
-                System.out.println("Changed Number");
-            }
-        }
-            </pre>
-        </div>
-    </div>
-
-
-    <!--    The div below is the Node of linkedList     -->
-    <!--  <div class="node"> <div class="num"> <div>1</div> </div> <div></div> </div>     -->
-
-    <script src="function.js"></script>
-    <script src="AnimationJS.js"></script>
-    <script src="app.js"></script>
+    <script src="JS/function.js"></script>
+    <script src="JS/Theme.js"></script>
+    <script src="JS/Stack.js"></script>
+    <script src="JS/AnimationJS.js"></script>
 </body>
-
 </html>

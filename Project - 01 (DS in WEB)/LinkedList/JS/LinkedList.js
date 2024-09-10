@@ -258,12 +258,12 @@ async function travelToIndex(index){
         document.querySelector('._' + i).classList.add('current');
         document.querySelector('#_' + i).innerHTML = 'Current';
         document.querySelector('#_' + i).style.transform = 'scale(1)';
-        document.querySelector('#_' + i).style.top = '0';
+        // document.querySelector('#_' + i).style.top = '0';
         await delay(150);
         setTimeout( () => { 
             document.querySelector('._' + i).classList.remove('current');
             document.querySelector('#_' + i).style.transform = 'scale(0)';
-            document.querySelector('#_' + i).style.top = '100%';
+            // document.querySelector('#_' + i).style.top = '100%';
             // document.querySelector('#_' + i).innerHTML = ''; 
         }, 200);
         document.querySelector('.a' + i).classList.add('currentArrow');
