@@ -1,15 +1,11 @@
-const darkGreen = '#4f9503';
-const red = '#a00909';
-const orange = '#8d5b00';
-
 const select = document.getElementById('function');
 const parameter = document.getElementById('parameter');
 const statusbox = document.querySelector('.status');
 const linkedlistBox = document.getElementById('linkedlist');
 
 let functionCode = 0;
-let linkedlist = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
-// let linkedlist = [];
+// let linkedlist = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+let linkedlist = [];
 let nodeCountInRow = 5;
 let width = 0;
 let innerHeight = 20;
@@ -51,7 +47,7 @@ async function runSelectedFunction(){
 
     switch(functionCode){
         case 0 :
-            changeStatus("Select Function", red);
+            changeStatus("Select Function", 'var(--red)');
             break;
         case 1 :
             isSuccessfull = await insertAtEnd();
@@ -87,13 +83,13 @@ async function runSelectedFunction(){
 async function insertAtEnd(){
     let data = document.getElementById('data');
     if(data.value == ''){
-        changeStatus("Enter Parameter", red);
+        changeStatus("Enter Parameter", 'var(--red)');
         return false;
     }
     data = parseInt(data.value);
 
     if(data < -999 || data > 999){
-        changeStatus("Range of value is -999 to 999", red);
+        changeStatus("Range of value is -999 to 999", 'var(--red)');
         return false;
     }
 
@@ -103,7 +99,7 @@ async function insertAtEnd(){
     print();
     scrollTo( document.querySelector('._' + (linkedlist.length - 1) ) );
     document.querySelector('._' + (linkedlist.length - 1) ).classList.add('fade-In');
-    changeStatus('Node is Successfully Added', darkGreen);
+    changeStatus('Node is Successfully Added', 'var(--darkGreen)');
     await delay(500);
     document.querySelector('._' + (linkedlist.length - 1)).classList.remove('fade-In');
     return true;
@@ -116,13 +112,13 @@ async function insertAtEnd(){
 async function insertAtFirst(){
     let data = document.getElementById('data');
     if(data.value == ''){
-        changeStatus("Enter Parameter", red);
+        changeStatus("Enter Parameter", 'var(--red)');
         return false;
     }
     data = parseInt(data.value);
 
     if(data < -999 || data > 999){
-        changeStatus("Range of value is -999 to 999", red);
+        changeStatus("Range of value is -999 to 999", 'var(--red)');
         return false;
     }
 
@@ -132,7 +128,7 @@ async function insertAtFirst(){
     document.querySelector('._0').classList.add('fade-In');
     await delay(500);
     document.querySelector('._0').classList.remove('fade-In');
-    changeStatus('Node is Successfully Added', darkGreen);
+    changeStatus('Node is Successfully Added', 'var(--darkGreen)');
     return true;
 }
 
@@ -144,26 +140,26 @@ async function insertAtIndex(){
     let data = document.getElementById('data');
     let index = document.getElementById('index');
     if(data.value == '' || index.value == ''){
-        changeStatus("Enter Parameter", red);
+        changeStatus("Enter Parameter", 'var(--red)');
         return false;
     }
     index = parseInt(index.value);
     data = parseInt(data.value);
 
     if(data < -999 || data > 999){
-        changeStatus("Range of value is -999 to 999", red);
+        changeStatus("Range of value is -999 to 999", 'var(--red)');
         return false;
     }
 
     if(index < 0){
-        changeStatus('Index can\'t be negative', red);
+        changeStatus('Index can\'t be negative', 'var(--red)');
         return false;
     }
 
     await travelToIndex(index);
 
     if(index > linkedlist.length){
-        changeStatus('Index ' + index + ' doesn\'t exist', red);
+        changeStatus('Index ' + index + ' doesn\'t exist', 'var(--red)');
         return false;
     }
 
@@ -173,7 +169,7 @@ async function insertAtIndex(){
     document.querySelector('._' + index).classList.add('fade-In');
     await delay(500);
     document.querySelector('._' + index).classList.remove('fade-In');
-    changeStatus('Node is Successfully Added', darkGreen);
+    changeStatus('Node is Successfully Added', 'var(--darkGreen)');
     return true;
 }
 
@@ -183,32 +179,32 @@ async function insertAtIndex(){
 // Also update the div with class 'linkedlist' and the div with class 'status'.
 async function deleteByIndex(){
     if(linkedlist.length == 0){
-        changeStatus("Linked List is empty", red);
+        changeStatus("Linked List is empty", 'var(--red)');
         return false;
     }
     let index = document.getElementById('index');
     if(index.value == ''){
-        changeStatus("Enter Parameter", red);
+        changeStatus("Enter Parameter", 'var(--red)');
         return false;
     }
     index = parseInt(index.value);
 
     if(index < 0){
-        changeStatus('Index can\'t be negative', red);
+        changeStatus('Index can\'t be negative', 'var(--red)');
         return false;
     }
 
     await travelToIndex(index);
 
     if(index >= linkedlist.length ){
-        changeStatus('Index ' + index + ' doesn\'t exist', red);
+        changeStatus('Index ' + index + ' doesn\'t exist', 'var(--red)');
         return false;
     }
     scrollTo( document.querySelector('._' + index) );
     document.querySelector('._' + index).classList.add('fade-Out');
     linkedlist.splice(index, 1);
     setTimeout( print , 500);
-    changeStatus('Node is Successfully Deleted', darkGreen);
+    changeStatus('Node is Successfully Deleted', 'var(--darkGreen)');
     return true;
 }
 
@@ -218,18 +214,18 @@ async function deleteByIndex(){
 // Also update the div with class 'linkedlist' and the div with class 'status'.
 async function deleteByData(){
     if(linkedlist.length == 0){
-        changeStatus("Linked List is empty", red);
+        changeStatus("Linked List is empty", 'var(--red)');
         return false;
     }
     let data = document.getElementById('data');
     if(data.value == ''){
-        changeStatus("Enter Parameter", red);
+        changeStatus("Enter Parameter", 'var(--red)');
         return false;
     }
     data = parseInt(data.value);
 
     if(data < -999 || data > 999){
-        changeStatus("Range of value is -999 to 999", red);
+        changeStatus("Range of value is -999 to 999", 'var(--red)');
         return false;
     }
 
@@ -237,7 +233,7 @@ async function deleteByData(){
 
     if(index == -1){
         await travelToIndex(linkedlist.length);
-        changeStatus('The linked list doesn\'t contain the value ' + data, orange);
+        changeStatus('The linked list doesn\'t contain the value ' + data, 'var(--orange)');
         return false;
     }
 
@@ -246,7 +242,7 @@ async function deleteByData(){
     document.querySelector('._' + index).classList.add('fade-Out');
     linkedlist.splice(index, 1);
     setTimeout( print , 500);
-    changeStatus('Node is Successfully Deleted', darkGreen);
+    changeStatus('Node is Successfully Deleted', 'var(--darkGreen)');
     return true;
 }
 
